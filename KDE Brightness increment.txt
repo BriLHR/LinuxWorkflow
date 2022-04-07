@@ -1,0 +1,27 @@
+Guide to setting brightness increments in KDE. Probably not the best implementation as this requires leaving your password openly in a file. Use this method at your own discretion.
+
+1. Find a directory to store 2 shell scripts we will be making to control brightness. Heck, could even be your desktop.
+2. Use any tool (vim/nano/vs code/etc) to create two new files. I named mine brightness_up.sh and brightness_down.sh respectively.
+3. Use your file explorer and locate the brightness file at /sys/class/backlight/______/brightness. The underscore part depends on the make of your computer. My path is /sys/class/backlight/amdgpu_bl0/brightness.
+4. Now, copy the path of the brightness file.
+5. Return back to the 2 .sh scripts. Copy and paste the following 3 lines into each script. Replacement with your own path and password (keep the password's quotation marks).
+
+brightness_up.sh
+> x="$(cat /sys/class/backlight/amdgpu_bl0/brightness)"
+> echo "passw0rd" | sudo -S tee /sys/class/backlight/amdgpu_bl0/brightness
+> echo $(($x+1)) | sudo tee /sys/class/backlight/amdgpu_bl0/brightness
+
+brightness_down.sh
+> x="$(cat /sys/class/backlight/amdgpu_bl0/brightness)"
+> echo "passw0rd" | sudo -S tee /sys/class/backlight/amdgpu_bl0/brightness
+> echo $(($x-1)) | sudo tee /sys/class/backlight/amdgpu_bl0/brightness
+
+6. Remember to save the files!
+7. Now, go to KDE's System Settings>Shortcuts>Custom Shortcuts. 
+8. Click Edit>New Group. I renamed the new group to "Brightness".
+9. Click on the newly created group, click Edit>New>Global Shortcut>Command/URL. Do this twice.
+10. Go to the trigger tab, assign your current brightness up key. If the system prompts you to reassign previous setting, say yes.
+11. In the action tab, key in the following:
+> bash /PATH TO FILE/brightness_up.sh
+12. Do it gain for brightness down.
+13. It should now work!
