@@ -4,7 +4,7 @@ Guide to setting brightness increments in KDE. Probably not the best implementat
 2. Use any tool (vim/nano/vs code/etc) to create two new files. I named mine brightness_up.sh and brightness_down.sh respectively.
 3. Use your file explorer and locate the brightness file at /sys/class/backlight/______/brightness. The underscore part depends on the make of your computer. My path is /sys/class/backlight/amdgpu_bl0/brightness.
 4. Now, copy the path of the brightness file.
-5. Return back to the 2 .sh scripts. Copy and paste the following 3 lines into each script. Replacement with your own path and password (keep the password's quotation marks).
+5. Return back to the 2 .sh scripts. Copy and paste the following 3 lines into each script. Replacement with your own path and password (keep the password's quotation marks). And please change your password if passw0rd is actually your password. 
 
 brightness_up.sh
 > x="$(cat /sys/class/backlight/amdgpu_bl0/brightness)"
