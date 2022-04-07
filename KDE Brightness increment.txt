@@ -16,6 +16,8 @@ brightness_down.sh
 > echo "passw0rd" | sudo -S tee /sys/class/backlight/amdgpu_bl0/brightness
 > echo $(($x-1)) | sudo tee /sys/class/backlight/amdgpu_bl0/brightness
 
+Note: Replacing 1 with a larger value works too. Results in larger brightness increments/decrements.
+
 6. Remember to save the files!
 7. Now, go to KDE's System Settings>Shortcuts>Custom Shortcuts. 
 8. Click Edit>New Group. I renamed the new group to "Brightness".
